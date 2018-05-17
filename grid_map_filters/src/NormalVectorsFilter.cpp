@@ -44,6 +44,7 @@ bool NormalVectorsFilter<T>::configure()
     }
     ROS_DEBUG("Normal vectors estimation radius = %f", estimationRadius_);
   }
+  method_ = Method::Area;   
 
   std::string normalVectorPositiveAxis;
   if (!FilterBase<T>::getParam(std::string("normal_vector_positive_axis"), normalVectorPositiveAxis)) {
@@ -65,13 +66,13 @@ bool NormalVectorsFilter<T>::configure()
     ROS_ERROR("Normal vectors filter did not find parameter `input_layer`.");
     return false;
   }
-  ROS_DEBUG("Normal vectors filter input layer is = %s.", inputLayer_.c_str());
+  ROS_ERROR("Normal vectors filter input layer is = %s.", inputLayer_.c_str());
 
   if (!FilterBase < T > ::getParam(std::string("output_layers_prefix"), outputLayersPrefix_)) {
     ROS_ERROR("Normal vectors filter did not find parameter `output_layers_prefix`.");
     return false;
   }
-  ROS_DEBUG("Normal vectors filter output_layer = %s.", outputLayersPrefix_.c_str());
+  ROS_ERROR("Normal vectors filter output_layer = %s.", outputLayersPrefix_.c_str());
 
   return true;
 }
@@ -86,14 +87,17 @@ bool NormalVectorsFilter<T>::update(const T& mapIn, T& mapOut)
 
   mapOut = mapIn;
   for (const auto& layer : normalVectorsLayers) mapOut.add(layer);
-  switch (method_) {
-    case Method::Area:
-      computeWithArea(mapOut, inputLayer_, outputLayersPrefix_);
-      break;
-    case Method::Raster:
-      computeWithRaster(mapOut, inputLayer_, outputLayersPrefix_);
-      break;
-  }
+  ROS_ERROR_STREAM("map resolution " << mapOut.getResolution());
+  computeWithArea(mapOut, inputLayer_, outputLayersPrefix_);
+  // switch (method_) {
+  //   case Method::Area:
+      
+  //     ROS_ERROR("compute with Area");
+  //     break;
+  //   case Method::Raster:
+  //     computeWithRaster(mapOut, inputLayer_, outputLayersPrefix_);
+  //     break;
+  // }
 
   return true;
 }

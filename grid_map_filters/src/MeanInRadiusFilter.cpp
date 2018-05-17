@@ -88,7 +88,6 @@ bool MeanInRadiusFilter<T>::update(const T& mapIn, T& mapOut)
     if (counter != 0)
       mapOut.at(outputLayer_, *iterator) = valueSum / counter;
   }
-
   return true;
 }
 

@@ -56,6 +56,8 @@ void FiltersDemo::callback(const grid_map_msgs::GridMap& message)
   GridMap inputMap;
   GridMapRosConverter::fromMessage(message, inputMap);
 
+  ROS_INFO("Created map with size %f x %f m (%i x %i cells).", inputMap.getLength().x(), inputMap.getLength().y(), inputMap.getSize()(0), inputMap.getSize()(1));
+  ROS_INFO("That is a resolution of: %f", inputMap.getResolution());
   // Apply filter chain.
   grid_map::GridMap outputMap;
   if (!filterChain_.update(inputMap, outputMap)) {
