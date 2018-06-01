@@ -118,3 +118,18 @@ grid_map_filters:
       layer: traversability
       upper_threshold: 1.0
       set_to: 1.0 # Other uses: .nan, .inf
+
+  # - name: delete_stupid_layers
+  #   type: gridMapFilters/DeletionFilter
+  #   params:
+  #     layers: [elevation, upper_bound, lower_bound, surface_normal_x, surface_normal_y, surface_normal_z,
+  # uncertainty_range, elevation_inpainted, elevation_smooth, normal_vectors_x, normal_vectors_y,
+  # normal_vectors_z, slope, roughness] # List of layers.
+
+  - name: inpaint_traversability
+    type: gridMapCv/InpaintFilter
+    params:
+      input_layer: traversability
+      output_layer: traversability_inpainted
+      radius: 0.05
+
