@@ -16,15 +16,15 @@ grid_map_visualization:
      scale: 0.06
      line_width: 0.005
      color: 15600153 # red
-  # - name: traversability_grid
-  #   type: occupancy_grid
-  #   params:
-  #    layer: traversability
-  #    data_min: 0
-  #    data_max: 0.5
-  - name: traversability_grid_inpainted
+  - name: traversability_grid
     type: occupancy_grid
     params:
-     layer: traversability_inpainted
+     layer: traversability
      data_min: 0
      data_max: 0.5
+  # - name: traversability_grid_inpainted
+  #   type: occupancy_grid
+  #   params:
+  #    layer: traversability_inpainted
+  #    data_min: -1
+  #    data_max: 1

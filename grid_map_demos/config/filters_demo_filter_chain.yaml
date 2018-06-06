@@ -126,10 +126,10 @@ grid_map_filters:
   # uncertainty_range, elevation_inpainted, elevation_smooth, normal_vectors_x, normal_vectors_y,
   # normal_vectors_z, slope, roughness] # List of layers.
 
-  - name: inpaint_traversability
-    type: gridMapCv/InpaintFilter
-    params:
-      input_layer: traversability
-      output_layer: traversability_inpainted
-      radius: 0.05
+  # - name: inpaint_traversability
+  #   type: gridMapCv/InpaintFilter
+  #   params:
+  #     input_layer: traversability
+  #     output_layer: traversability_inpainted
+  #     radius: 0.05
 
