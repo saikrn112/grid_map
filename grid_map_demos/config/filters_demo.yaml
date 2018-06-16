@@ -21,7 +21,7 @@ grid_map_visualization:
     params:
      layer: traversability
      data_min: 0
-     data_max: 0.5
+     data_max: 0.3
   # - name: traversability_grid_inpainted
   #   type: occupancy_grid
   #   params:
